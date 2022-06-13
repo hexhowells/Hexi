@@ -48,5 +48,6 @@ class STT(Thread):
                 transcribed_text += self._out.flush()
                 return transcribed_text.lower()
 
+
 if __name__ == '__main__':
     STT().listen()
