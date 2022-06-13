@@ -21,8 +21,3 @@ class Display:
         with canvas(self.virtual) as draw:
             draw.bitmap((x,y), img, fill=fill)
 
-
-    def set_background(self, img):
-        background = Image.new("RGB", (self.height, self.width), "white")
-        background.paste(img)
-        self.device.display(background.convert(self.mode))
