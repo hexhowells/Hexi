@@ -5,6 +5,8 @@ from threading import Thread
 import pvporcupine
 from pvrecorder import PvRecorder
 
+import utils
+
 
 class KeywordDetection(Thread):
     def __init__(
@@ -22,7 +24,7 @@ class KeywordDetection(Thread):
         if access_key:
             self._access_key = access_key
         else:
-            self._access_key = load_access_key()
+            self._access_key = utils.load_api_key()
 
         self._library_path = library_path
         self._model_path = model_path
@@ -65,11 +67,6 @@ class KeywordDetection(Thread):
         except Exception as e:
             print(f'error: {e}')
 
-
-def load_access_key():
-    with open("api_key.txt", "r") as apifile:
-        api_key = apifile.read()
-        return api_key
 
 
 if __name__ == "__main__":
