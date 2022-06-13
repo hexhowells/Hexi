@@ -1,2 +1,5 @@
 *.svg
 __pycache__/
+contents.txt
+api_key.txt
+*.ppn
