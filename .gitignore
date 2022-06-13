@@ -3,3 +3,5 @@ __pycache__/
 contents.txt
 api_key.txt
 *.ppn
+example.py
+*.wav
