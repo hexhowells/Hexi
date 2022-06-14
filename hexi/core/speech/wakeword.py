@@ -7,7 +7,6 @@ from pvrecorder import PvRecorder
 
 import utils
 
-
 class KeywordDetection(Thread):
     def __init__(
             self, 

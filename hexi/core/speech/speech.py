@@ -4,8 +4,7 @@ from threading import Thread
 from pvcheetah import *
 from pvrecorder import PvRecorder
 
-import utils
-
+from speech import utils
 
 class STT(Thread):
     def __init__(
