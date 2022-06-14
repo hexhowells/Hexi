@@ -5,7 +5,7 @@ from threading import Thread
 import pvporcupine
 from pvrecorder import PvRecorder
 
-import utils
+from speech import utils
 
 class KeywordDetection(Thread):
     def __init__(
@@ -16,7 +16,7 @@ class KeywordDetection(Thread):
             keyword_path="hexi-keyword.ppn",
             sensitivities=[0.5],
             input_device_index=-1,
-            callback = None
+            callback = False
             ):
         super(KeywordDetection, self).__init__()
 
@@ -33,7 +33,7 @@ class KeywordDetection(Thread):
         self._callback = callback
 
     
-    def run(self):
+    def run(self, callback):
         porcupine = None
         recorder = None
 
