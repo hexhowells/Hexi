@@ -45,6 +45,7 @@ class STT(Thread):
 
             if is_endpoint:
                 transcribed_text += self._out.flush()
+                recorder.stop()
                 return transcribed_text.lower()
 
 

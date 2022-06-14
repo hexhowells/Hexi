@@ -13,7 +13,7 @@ class KeywordDetection(Thread):
             access_key=None, 
             library_path=pvporcupine.LIBRARY_PATH,
             model_path=pvporcupine.MODEL_PATH,
-            keyword_path="hexi-keyword.ppn",
+            keyword_path="speech/hexi-keyword.ppn",
             sensitivities=[0.5],
             input_device_index=-1,
             callback = False
@@ -59,7 +59,9 @@ class KeywordDetection(Thread):
 
                 if result >= 0:
                     if self._callback:
+                        recorder.stop()
                         callback()
+                        recorder.start()
                     else:
                         print("detected keyword!")
 
