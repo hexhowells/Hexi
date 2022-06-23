@@ -18,10 +18,10 @@ class Skill:
 
 
 class Harpie:
-    def __init__(self):
+    def __init__(self, intent_path):
         self._skills = []
         self._all_commands = []
-        self._load_intent_library()
+        self._load_intent_library(intent_path)
 
         self._lexicon = self._get_lexicon()
 
@@ -44,8 +44,8 @@ class Harpie:
         return [skill.name for skill in self._skills]
 
 
-    def _load_intent_library(self):
-        with open("skills/skills.json", "r") as json_file:
+    def _load_intent_library(self, intent_path):
+        with open(intent_path, "r") as json_file:
             skills = json.load(json_file)
 
             for name, data in skills.items():
