@@ -11,7 +11,7 @@ class Skill:
     def __init__(self, name, data):
         self.name = name
 
-        self.commands = data['command']
+        self.commands = data['commands']
         self.script = data['script']
 
         self.tfidf_vectors = {}
@@ -51,7 +51,7 @@ class Harpie:
             for name, data in skills.items():
                 self._skills.append(Skill(name, data))
 
-                for command in data['command']:
+                for command in data['commands']:
                     self._all_commands.append(command)
 
 
