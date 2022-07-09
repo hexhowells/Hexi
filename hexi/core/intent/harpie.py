@@ -105,12 +105,12 @@ class Harpie:
         query_vec = copy.copy(self._zero_vector)
 
         token_counts = Counter(tokens)
-
+        
         for token, token_occurence in token_counts.items():
             docs_containing_token = 0
 
             for _doc in self._command_tokens:
-                if token in _doc:
+                if token == _doc:
                     docs_containing_token += 1
 
             if docs_containing_token == 0:
@@ -120,12 +120,11 @@ class Harpie:
             idf = len(self._all_commands) / docs_containing_token
 
             query_vec[token] = tf * idf
-
+        
         cosines = {}
         for skill in self._skills:
             for tfidf in list(skill.tfidf_vectors.values()):
                 score = self._cosine_sim(query_vec, tfidf)
-
                 if score in cosines.keys():
                     cosines[score].append(skill)
                 else:
