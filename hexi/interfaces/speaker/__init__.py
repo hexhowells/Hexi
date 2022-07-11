@@ -1,1 +1,1 @@
-from sound import *
+from .sound import *
