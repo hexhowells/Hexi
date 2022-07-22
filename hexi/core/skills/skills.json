@@ -1,0 +1,38 @@
+{
+    "backward": {
+        "commands": [
+            "move backwards",
+            "go backwards",
+            "reverse"
+        ],
+        "script": "backward/"
+    },
+    "example": {
+        "commands": [
+            "run example skill"
+        ],
+        "script": ""
+    },
+    "forward": {
+        "commands": [
+            "move forward",
+            "come forward",
+            "go forward",
+            "forward"
+        ],
+        "script": "forward/"
+    },
+    "redlightgreenlight": {
+        "commands": [
+            "play red light green light"
+        ],
+        "script": "redlightgreenlight/"
+    },
+    "twirl": {
+        "commands": [
+            "do a twirl",
+            "do a spin"
+        ],
+        "script": "twirl/"
+    }
+}
