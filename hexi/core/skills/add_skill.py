@@ -29,8 +29,11 @@ def get_inputs():
 
 def generate_folder(skill_name):
     os.mkdir(skill_name)
+    with open("template.py", "r") as template_file:
+        template = template_file.read()
+
     with open(f'{skill_name}/run.py', 'a') as runfile:
-        runfile.write("# import interfaces here\n\n# entry point of skill\ndef start():\n    pass\n")
+        runfile.write(template)
 
 
 def main():

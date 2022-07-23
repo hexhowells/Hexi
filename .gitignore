@@ -5,3 +5,4 @@ api_key.txt
 *.ppn
 example.py
 *.wav
+music/
