@@ -35,6 +35,7 @@ class Motor:
 
 
     def __del__(self):
+        self.stop()
         gpio.cleanup()
 
 
