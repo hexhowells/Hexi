@@ -1,15 +1,20 @@
 import importlib
+from PIL import Image
 
 from speech.speech import STT
 from speech.wakeword import KeywordDetection
 
 from interfaces.speaker import sound
+from interfaces.display import display
 from core.intent.harpie import Harpie
 
 print("loading STT model..")
 stt = STT()
 
 harpie = Harpie("core/skills/skills.json")
+
+face_img_path = "assets/face/face.png"
+face_img = Image.open(face_img_path)
 
 
 def run_script(intent):
@@ -39,6 +44,8 @@ def wakeword_callback():
 
 
 def main():
+    screen = display.Display()
+    screen.show_image(face_img)
     print("loading wakeword listener..")
     listener = KeywordDetection(callback=True)
     listener.run(wakeword_callback)
