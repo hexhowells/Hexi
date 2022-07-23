@@ -1,5 +1,6 @@
 import importlib
 from PIL import Image
+import subprocess
 
 from speech.speech import STT
 from speech.wakeword import KeywordDetection
@@ -15,6 +16,8 @@ harpie = Harpie("core/skills/skills.json")
 
 face_img_path = "assets/face/face.png"
 face_img = Image.open(face_img_path)
+
+subprocess.call(["boot/audio.sh"])
 
 
 def run_script(intent):
