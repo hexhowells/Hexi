@@ -18,12 +18,18 @@ class Motor:
         gpio.setup(self.pins[3], gpio.OUT)
 
 
-    def drive(self, direction, seconds):
+    def drive(self, direction, seconds=None):
         for pin, direc in zip(self.pins, direction):
             gpio.output(pin, direc)
 
-        time.sleep(seconds)
-        
+        if seconds:
+            time.sleep(seconds)
+
+            for pin in self.pins:
+                gpio.output(pin, False)
+
+
+    def stop(self):
         for pin in self.pins:
             gpio.output(pin, False)
 
