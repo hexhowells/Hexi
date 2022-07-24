@@ -17,6 +17,10 @@ class Display:
         self.width = self.device.width
         self.virtual = viewport(self.device, width=self.width, height=self.height)
         self.mode = self.device.mode
+    
+    
+    def clear(self):
+        self.device.clear()
 
 
     def set_constrast(self, level):
