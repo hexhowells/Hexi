@@ -19,6 +19,12 @@ class Display:
         self.mode = self.device.mode
 
 
+    def set_constrast(self, level):
+        assert 0 <= level <= 255, "contrast must be between 0-255"
+        
+        self.device.constrast(level)
+
+
     def show_image(self, img, x=0, y=0, fill="white"):
         with canvas(self.virtual) as draw:
             draw.bitmap((x,y), img, fill=fill)
