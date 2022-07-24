@@ -6,55 +6,56 @@ from speech.speech import STT
 from speech.wakeword import KeywordDetection
 
 from interfaces.speaker import sound
-from interfaces.display import display
+from hexi.interfaces.display import display
+
 from core.intent.harpie import Harpie
 
-print("loading STT model..")
-stt = STT()
 
-harpie = Harpie("core/skills/skills.json")
+class Hexi:
+    def __init__(self):
+        self.screen = display.Display()
+        splash_screen = Image.open("assets/splashscreen.png")
+        self.default_face = Image.open("assets/face/face.png")
+        self.screen.show_image(splash_screen)
 
-face_img_path = "assets/face/face.png"
-face_img = Image.open(face_img_path)
+        self.stt = STT()
+        self.harpie = Harpie("core/skills/skills.json")
+        self.listener = KeywordDetection(callback=True)
 
-subprocess.call(["boot/audio.sh"])
-
-
-def run_script(intent):
-    pass
-    # os run or dynamically import to run script
+        subprocess.call(["boot/audio.sh"])
 
 
-def wakeword_callback():
-    # audible indicator that wakeword has been recognised
-    print("hello!")
-    sound.play_wav("assets/audio/beep.wav")
+    def idle(self):
+        face_img = self.screen.show_image(self.default_face)
+        self.listener.run(self.listening_callback)
+        
 
-    command = stt.listen()
-    print(command)
+    def listening_callback(self):
+        print("keyword detected!")
+        sound.play_wav("assets/audio/beep.wav")
+        command = self.stt.listen()
+        print(command)
+        
+        self.process_command(command)
 
-    intent = harpie.get_intent(command)
 
-    if len(intent) > 1:
-        print("intent not found")
-    else:
+    def process_command(self, command):
+        intent = self.harpie.get_intent(command)
+
+        if len(intent) > 1:
+            print("intent not found")
+        else:
+            self.start_skill(intent)
+
+
+    def start_skill(self, intent):
         print(intent[0].name)
         filepath = f'core.skills.{intent[0].name}.run'
         script = importlib.import_module(filepath, package=None)
         script.start()
 
-    return True
-
-
-def main():
-    screen = display.Display()
-    screen.show_image(face_img)
-    print("loading wakeword listener..")
-    listener = KeywordDetection(callback=True)
-    listener.run(wakeword_callback)
-
 
 if __name__ == "__main__":
-    main()
-
+    hexi = Hexi()
+    hexi.idle()
 
