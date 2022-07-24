@@ -32,7 +32,7 @@ class Display:
             draw.bitmap((x,y), img, fill=fill)
 
 
-    def show_text(self, text, x=0, y=0):
+    def draw_text(self, text, x=0, y=0):
         assert 0 <= x <= 128, "x position should be between 0-128"
         assert 0 <= y <= 64, "y position should be between 0-128"
 
@@ -53,4 +53,11 @@ class Display:
 
     def draw_rectangle(self, x, y, height, width, fill="white", outline="white"):
         with canvas(self.virtual) as draw:
-            draw.rectangle((x, y, width, height), fill=fill, outline=outline)
+            draw.rectangle((x, y, x+width-1, y+height-1), fill=fill, outline=outline)
+
+
+    def draw_rectangles(self, rectangles, fill="white", outline="white"):
+        with canvas(self.virtual) as draw:
+            for (x, y, h, w) in rectangles:
+                draw.rectangle((x, y, x+w-1, y+h-1), fill=fill, outline=outline)
+
