@@ -4,8 +4,6 @@ from luma.oled.device import sh1106
 from luma.core.render import canvas
 from luma.core.virtual import viewport
 
-import inspect
-
 
 assets_folder = "../../assets/"
 
@@ -40,5 +38,14 @@ class Display:
 
         with canvas(self.virtual) as draw:
             draw.text((x,y), text, fill="white")
-            print(inspect.signature(draw.text))
 
+
+    def draw_pixel(self, x, y, fill="white"):
+        with canvas(self.virtual) as draw:
+            draw.point((x, y), fill=fill)
+
+
+    def draw_pixels(self, pixels, fill="white"):
+        with canvas(self.virtual) as draw:
+            for (x,y) in pixels:
+                draw.point((x,y), fill=fill)
