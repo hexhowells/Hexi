@@ -21,10 +21,10 @@ class Display:
         self.device.clear()
 
 
-    def set_constrast(self, level):
+    def set_contrast(self, level):
         assert 0 <= level <= 255, "contrast must be between 0-255"
         
-        self.device.constrast(level)
+        self.device.contrast(level)
 
 
     def show_image(self, img, x=0, y=0, fill="white"):
