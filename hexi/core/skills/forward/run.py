@@ -1,7 +1,7 @@
 from hexi.interfaces.motor import Motor
 
 
-def start():
+def start(command):
     motor = Motor()
     motor.drive(Motor.FORWARD, 0.5)
 

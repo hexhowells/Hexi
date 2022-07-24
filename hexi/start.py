@@ -45,14 +45,14 @@ class Hexi:
         if len(intent) > 1:
             print("intent not found")
         else:
-            self.start_skill(intent)
+            self.start_skill(intent, command)
 
 
-    def start_skill(self, intent):
+    def start_skill(self, intent, command):
         print(intent[0].name)
         filepath = f'core.skills.{intent[0].name}.run'
         script = importlib.import_module(filepath, package=None)
-        script.start()
+        script.start(command)
 
 
 if __name__ == "__main__":
