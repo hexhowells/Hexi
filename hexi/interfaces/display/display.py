@@ -49,3 +49,8 @@ class Display:
         with canvas(self.virtual) as draw:
             for (x,y) in pixels:
                 draw.point((x,y), fill=fill)
+
+
+    def draw_rectangle(self, x, y, height, width, fill="white", outline="white"):
+        with canvas(self.virtual) as draw:
+            draw.rectangle((x, y, width, height), fill=fill, outline=outline)
