@@ -7,3 +7,4 @@ example.py
 *.wav
 *.mp3
 music/
+*.swp
