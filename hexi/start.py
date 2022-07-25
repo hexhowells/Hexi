@@ -1,6 +1,8 @@
 import importlib
 from PIL import Image
 import subprocess
+import os
+import sys
 
 from speech.speech import STT
 from speech.wakeword import KeywordDetection
@@ -49,8 +51,14 @@ class Hexi:
 
 
     def start_skill(self, intent, command):
-        print(intent[0].name)
-        filepath = f'core.skills.{intent[0].name}.run'
+        intent_name = intent[0].name
+
+        intent_dir = os.getcwd() + f"/core/skills/{intent_name}/"
+        sys.path.append(intent_dir)
+        os.chdir(intent_dir)
+
+        print(intent_name)
+        filepath = f'core.skills.{intent_name}.run'
         script = importlib.import_module(filepath, package=None)
         script.start(command)
 
