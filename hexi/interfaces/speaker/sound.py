@@ -1,11 +1,16 @@
 import simpleaudio as sa
 import alsaaudio
+from playsound import playsound
 
 
 def play_wav(wav_filepath):
     wave_obj = sa.WaveObject.from_wave_file(wav_filepath)
     play_obj = wave_obj.play()
     play_obj.wait_done()
+
+
+def play_extended_sound(filepath):
+    playsound(filepath)
     return True
 
 
