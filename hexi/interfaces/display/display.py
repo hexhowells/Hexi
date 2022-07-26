@@ -1,8 +1,8 @@
-from PIL import Image
+from PIL import Image, ImageFont
 from luma.core.interface.serial import i2c
 from luma.oled.device import sh1106
 from luma.core.render import canvas
-from luma.core.virtual import viewport
+from luma.core.virtual import viewport, terminal
 
 
 assets_folder = "../../assets/"
@@ -60,4 +60,42 @@ class Display:
         with canvas(self.virtual) as draw:
             for (x, y, h, w) in rectangles:
                 draw.rectangle((x, y, x+w-1, y+h-1), fill=fill, outline=outline)
+
+
+class Terminal:
+    def __init__(self, display):
+        font = ImageFont.truetype("../../assets/fonts/ProggyTiny.ttf", 16)
+        self.terminal = terminal(display.device, font)
+
+
+    def print(self, text):
+        self.terminal.animate = False
+        self.terminal.puts(text)
+        self.terminal.animate = True
+
+
+    def println(self, text):
+        self.terminal.animate = False
+        self.terminal.println(text)
+        self.terminal.animate = True
+
+
+    def type(self, text):
+        self.terminal.puts(text)
+
+
+    def typeln(self, text):
+        self.terminal.println(text)
+
+
+    def clear(self):
+        self.terminal.clear()
+
+
+    def flush(self):
+        self.terminal.flush()
+
+    
+    def backspace(self):
+        self.terminal.backspace()
 
