@@ -54,6 +54,13 @@
         ],
         "script": "left/"
     },
+    "love": {
+        "commands": [
+            "i love you",
+            "love you"
+        ],
+        "script": "love/"
+    },
     "redlightgreenlight": {
         "commands": [
             "play red light green light"
