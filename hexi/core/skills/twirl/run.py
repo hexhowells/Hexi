@@ -2,7 +2,7 @@
 from hexi.interfaces.motor import Motor
 
 # entry point of skill
-def start(command):
+def start(command=None):
     motor = Motor()
     motor.drive(Motor.RIGHT, 1.3)
 

@@ -1,4 +1,15 @@
 {
+    "ambient": {
+        "commands": [
+            "play ambient sounds",
+            "play relaxing sounds",
+            "play nice sounds",
+            "play rain sounds",
+            "play fire sounds",
+            "play thunder sounds"
+        ],
+        "script": "ambient/"
+    },
     "backward": {
         "commands": [
             "move backwards",
@@ -6,6 +17,19 @@
             "reverse"
         ],
         "script": "backward/"
+    },
+    "coin": {
+        "commands": [
+            "flip a coin"
+        ],
+        "script": "coin/"
+    },
+    "dance": {
+        "commands": [
+            "dance",
+            "lets dance"
+        ],
+        "script": "dance/"
     },
     "example": {
         "commands": [
@@ -27,6 +51,16 @@
             "play red light green light"
         ],
         "script": "redlightgreenlight/"
+    },
+    "right": {
+        "commands": [
+            "move right",
+            "rotate right",
+            "rotate clockwise",
+            "move clockwise",
+            "turn right"
+        ],
+        "script": "right/"
     },
     "twirl": {
         "commands": [

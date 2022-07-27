@@ -27,7 +27,7 @@ def dance(motor):
 
 
 # entry point of skill
-def start(command):
+def start(command=None):
     motor = Motor()
     #music_process = multiprocessing.Process(target=sound.play_wav, args=("dance_music.wav", ))
     #music_process.start()

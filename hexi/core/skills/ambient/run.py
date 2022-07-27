@@ -6,7 +6,7 @@ import starfield
 
 
 # entry point of skill
-def start(command):
+def start(command=None):
     t1 = threading.Thread(target=sound.play_extended_sound, args=["assets/rain_sounds.wav"])
     t1.start()
     
