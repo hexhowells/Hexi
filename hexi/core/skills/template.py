@@ -2,7 +2,7 @@
 
 
 # entry point of skill
-def start():
+def start(command=None):
     pass
 
 
