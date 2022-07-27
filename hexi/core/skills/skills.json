@@ -46,6 +46,14 @@
         ],
         "script": "forward/"
     },
+    "left": {
+        "commands": [
+            "move left",
+            "turn left",
+            "rotate left"
+        ],
+        "script": "left/"
+    },
     "redlightgreenlight": {
         "commands": [
             "play red light green light"
@@ -61,6 +69,16 @@
             "turn right"
         ],
         "script": "right/"
+    },
+    "torch": {
+        "commands": [
+            "turn on the torch",
+            "turn on the flashlight",
+            "its too dark",
+            "give me light",
+            "im afraid of the dark"
+        ],
+        "script": "torch/"
     },
     "twirl": {
         "commands": [
