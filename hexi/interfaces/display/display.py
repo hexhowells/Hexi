@@ -5,7 +5,7 @@ from luma.core.render import canvas
 from luma.core.virtual import viewport, terminal
 
 
-assets_folder = "../../assets/"
+assets_folder = "/home/pi/Hexi/hexi/assets/"
 
 
 class Display:
