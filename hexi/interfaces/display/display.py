@@ -15,6 +15,7 @@ class Display:
         self.width = self.device.width
         self.virtual = viewport(self.device, width=self.width, height=self.height)
         self.mode = self.device.mode
+        self.font = ImageFont.truetype(assets_folder+"fonts/fontawesome.ttf", 54)
     
     
     def clear(self):
@@ -30,6 +31,16 @@ class Display:
     def show_image(self, img, x=0, y=0, fill="white"):
         with canvas(self.virtual) as draw:
             draw.bitmap((x,y), img, fill=fill)
+
+
+    def show_icon(self, icon_id, x=None, y=None):
+        with canvas(self.virtual) as draw:
+            # center coords if not supplied
+            w, h = draw.textsize(text=icon_id, font=self.font)
+            if not x: x = (self.width - w) / 2
+            if not y: y = (self.height - h) / 2
+
+            draw.text((x, y), text=icon_id, font=self.font, fill="white")
 
 
     def draw_text(self, text, x=0, y=0):
