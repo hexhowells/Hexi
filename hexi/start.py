@@ -25,10 +25,14 @@ class Hexi:
         self.listener = KeywordDetection(callback=True)
 
         subprocess.call(["boot/audio.sh"])
+    
+
+    def _show_face(self):
+        self.screen.show_image(self.default_face)
 
 
     def idle(self):
-        face_img = self.screen.show_image(self.default_face)
+        self._show_face()
         self.listener.run(self.listening_callback)
         
 
@@ -48,10 +52,12 @@ class Hexi:
             print("intent not found")
         else:
             self.start_skill(intent, command)
+            self._show_face()
 
 
     def start_skill(self, intent, command):
         intent_name = intent[0].name
+        cur_dir = os.getcwd()
 
         intent_dir = os.getcwd() + f"/core/skills/{intent_name}/"
         sys.path.append(intent_dir)
@@ -61,6 +67,10 @@ class Hexi:
         filepath = f'core.skills.{intent_name}.run'
         script = importlib.import_module(filepath, package=None)
         script.start(command)
+        
+        sys.path.append(cur_dir)
+        os.chdir(cur_dir)
+    
 
 
 if __name__ == "__main__":
