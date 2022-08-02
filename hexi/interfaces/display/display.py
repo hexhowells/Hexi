@@ -1,4 +1,4 @@
-from PIL import Image, ImageFont
+from PIL import Image, ImageFont, ImageDraw
 from luma.core.interface.serial import i2c
 from luma.oled.device import sh1106
 from luma.core.render import canvas
@@ -16,7 +16,13 @@ class Display:
         self.virtual = viewport(self.device, width=self.width, height=self.height)
         self.mode = self.device.mode
         self.font = ImageFont.truetype(assets_folder+"fonts/fontawesome.ttf", 54)
+
+        self.background = Image.new(self.mode, self.device.size)
     
+
+    def _pil_display(self):
+        self.device.display(self.background)
+
     
     def clear(self):
         self.device.clear()
@@ -49,6 +55,17 @@ class Display:
 
         with canvas(self.virtual) as draw:
             draw.text((x,y), text, fill="white")
+
+
+    def draw_text_custom(self, text, x=0, y=0, size=12):
+        assert 0 <= x <= 128, "x position should be between =-128"
+        assert 0 <= y <= 64, "y position should be between 0-128"
+
+        draw = ImageDraw.Draw(self.background)
+        font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSans.ttf", size)
+
+        draw.text((x, y), text, fill="white", font=font)
+        self._pil_display()
 
 
     def draw_pixel(self, x, y, fill="white"):
