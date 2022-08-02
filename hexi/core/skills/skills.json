@@ -18,6 +18,12 @@
         ],
         "script": "backward/"
     },
+    "birthday": {
+        "commands": [
+            "its my birthday"
+        ],
+        "script": "birthday/"
+    },
     "coin": {
         "commands": [
             "flip a coin"
@@ -46,6 +52,15 @@
         ],
         "script": "forward/"
     },
+    "highfive": {
+        "commands": [
+            "give me a high five",
+            "give me a fist bump",
+            "high five",
+            "fist bump"
+        ],
+        "script": "highfive/"
+    },
     "left": {
         "commands": [
             "move left",
@@ -60,6 +75,12 @@
             "love you"
         ],
         "script": "love/"
+    },
+    "mute": {
+        "commands": [
+            "mute"
+        ],
+        "script": "mute/"
     },
     "redlightgreenlight": {
         "commands": [
