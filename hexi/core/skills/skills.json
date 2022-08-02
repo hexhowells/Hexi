@@ -98,6 +98,14 @@
         ],
         "script": "right/"
     },
+    "time": {
+        "commands": [
+            "whats the time",
+            "whats the current time",
+            "what time is it"
+        ],
+        "script": "time/"
+    },
     "torch": {
         "commands": [
             "turn on the torch",
