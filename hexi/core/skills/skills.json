@@ -52,6 +52,14 @@
         ],
         "script": "forward/"
     },
+    "happy": {
+        "commands": [
+            "good job",
+            "you look cute",
+            "happy dance"
+        ],
+        "script": "happy/"
+    },
     "highfive": {
         "commands": [
             "give me a high five",
