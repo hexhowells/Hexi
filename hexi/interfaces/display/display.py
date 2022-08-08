@@ -26,6 +26,8 @@ class Display:
     
     def clear(self):
         self.device.clear()
+        self.background = Image.new(self.mode, self.device.size)
+        self._pil_display()
 
 
     def set_contrast(self, level):
