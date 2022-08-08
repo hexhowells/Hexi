@@ -1,10 +1,9 @@
 import telebot
+import os
+from hexi.auth import auth
 
 def get_api_token():
-    with open("api.txt", "r") as apifile:
-        api_token = apifile.read().strip()
-
-    return api_token
+    return auth.keys["telegram"]
 
 
 class TelegramBot:
