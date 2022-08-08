@@ -98,6 +98,15 @@
         ],
         "script": "right/"
     },
+    "takePicture": {
+        "commands": [
+            "take a picture of me",
+            "take a photo of me",
+            "take a picture",
+            "take a photo"
+        ],
+        "script": "takePicture/"
+    },
     "time": {
         "commands": [
             "whats the time",
