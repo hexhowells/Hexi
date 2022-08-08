@@ -1,4 +1,5 @@
 # import interfaces here
+import time
 
 
 # entry point of skill
