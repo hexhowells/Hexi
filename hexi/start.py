@@ -27,8 +27,8 @@ class Hexi:
         subprocess.call(["boot/audio.sh"])
     
 
-    def _show_face(self):
-        self.screen.show_image(self.default_face)
+    def _show_face(self, y=0):
+        self.screen.show_image(self.default_face, y=y)
 
 
     def idle(self):
@@ -38,6 +38,7 @@ class Hexi:
 
     def listening_callback(self):
         print("keyword detected!")
+        self._show_face(y=-5)
         sound.play_wav("assets/audio/beep.wav")
         command = self.stt.listen()
         print(command)
@@ -52,7 +53,8 @@ class Hexi:
             print("intent not found")
         else:
             self.start_skill(intent, command)
-            self._show_face()
+        
+        self._show_face()
 
 
     def start_skill(self, intent, command):
