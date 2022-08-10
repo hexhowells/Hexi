@@ -10,3 +10,4 @@ music/
 *.swp
 api.txt
 auth.py
+config.json
