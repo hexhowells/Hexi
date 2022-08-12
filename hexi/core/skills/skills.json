@@ -97,6 +97,13 @@
         ],
         "script": "mute/"
     },
+    "name": {
+        "commands": [
+            "whats my name",
+            "say my name"
+        ],
+        "script": "name/"
+    },
     "redlightgreenlight": {
         "commands": [
             "play red light green light"
