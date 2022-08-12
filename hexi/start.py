@@ -9,8 +9,10 @@ from speech.wakeword import KeywordDetection
 
 from interfaces.speaker import sound
 from hexi.interfaces.display import display
+from hexi import config
 
 from core.intent.harpie import Harpie
+
 
 
 class Hexi:
@@ -23,6 +25,8 @@ class Hexi:
         self.stt = STT()
         self.harpie = Harpie("core/skills/skills.json")
         self.listener = KeywordDetection(callback=True)
+
+        self.config = config.load()
 
         subprocess.call(["boot/audio.sh"])
     
