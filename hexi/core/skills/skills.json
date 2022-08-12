@@ -84,6 +84,13 @@
         ],
         "script": "love/"
     },
+    "morse": {
+        "commands": [
+            "speak morse code",
+            "can you speak morse code"
+        ],
+        "script": "morse/"
+    },
     "mute": {
         "commands": [
             "mute"
