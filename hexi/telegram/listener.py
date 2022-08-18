@@ -1,5 +1,6 @@
 import telebot
 from hexi.auth import auth
+from hexi.config import config
 from datetime import datetime
 
 
@@ -20,6 +21,15 @@ def ping(message):
     now = now_raw.strftime("%d/%m/%Y %H:%M:%S")
     msg = f'ping recieved at {now}'
     bot.send_message(message.chat.id, msg)
+
+
+
+@bot.message_handler(commands=['blackout'])
+def blackout(message):
+    config_data = config.load()
+    config_data['blackout'] = not config_data['blackout']
+    config.save(config_data)
+    bot.send_message(message.chat.id, f'set blackout mode to {config_data["blackout"]}')
 
 
 
