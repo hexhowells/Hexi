@@ -38,3 +38,7 @@ class Camera:
         self.camera.capture(image, self.img_format)
         self.camera.stop_preview()
         return image
+
+
+    def close(self):
+        self.camera.close()
