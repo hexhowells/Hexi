@@ -25,6 +25,10 @@ def start(command=None):
     bot.send_image(photo)
 
     screen.clear()
+    cam.close()
+
+
+    return 1
 
 
 
