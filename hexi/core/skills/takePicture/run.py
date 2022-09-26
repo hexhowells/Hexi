@@ -20,7 +20,9 @@ def start(command=None):
 
     screen.show_icon(icons.Camera)
     photo_array = cam.capture(delay=1)
+    photo_array = photo_array[:,:,::-1]  # convert BGR to RGB
     photo = Image.fromarray(photo_array)
+    
 
     bot.send_image(photo)
 
