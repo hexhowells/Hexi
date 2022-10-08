@@ -30,6 +30,17 @@
         ],
         "script": "coin/"
     },
+    "cube": {
+        "commands": [
+            "find your cube",
+            "find your toy",
+            "wheres your cube",
+            "wheres your toy",
+            "where is your cube",
+            "where is your toy"
+        ],
+        "script": "cube/"
+    },
     "dance": {
         "commands": [
             "dance",
