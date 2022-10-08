@@ -44,8 +44,7 @@ def cycle_faces(token, screen):
         if token.is_paused():
             continue
         else:
-            #random_time = random.randint(10, 120)
-            random_time = 5
+            random_time = random.randint(10, 120)
 
             time.sleep(random_time)
             if not token.is_paused():
