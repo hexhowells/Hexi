@@ -122,6 +122,16 @@ class Hexi:
 
 
     def process_command(self, command):
+        if command == "stop":
+            print("[stop command] - stopping background skill")
+            if self.skill_mp and self.skill_mp.is_alive():
+                self.skill_mp.terminate()
+            self.skill_mp = None
+            self.process_handler = None
+            self._show_face()
+            return 0
+
+
         intent = self.harpie.get_intent(command)
 
         if len(intent) > 1:
