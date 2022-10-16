@@ -1,14 +1,16 @@
 # import interfaces here
 from hexi.interfaces.speaker import sound
-import threading
 import rain
 import starfield
+import vlc
 
 
 # entry point of skill
 def start(command=None):
-    t1 = threading.Thread(target=sound.play_extended_sound, args=["assets/rain_sounds.wav"])
-    t1.start()
+    audio_url = "https://rainymood.com/audio1112/0.m4a"
+    
+    stream = vlc.MediaPlayer(audio_url)
+    stream.play()
     
     rain.start_animation()
     #starfield.start_animation()
