@@ -88,6 +88,15 @@
         ],
         "script": "left/"
     },
+    "lofi": {
+        "commands": [
+            "play relaxing music",
+            "play study music",
+            "play low fine music",
+            "play chill music"
+        ],
+        "script": "lofi/"
+    },
     "love": {
         "commands": [
             "i love you",
