@@ -6,9 +6,6 @@ import sys
 import time
 import random
 from threading import Thread
-import multiprocessing as mp
-import psutil
-import atexit
 
 from speech.speech import STT
 from speech.wakeword import KeywordDetection
@@ -23,7 +20,6 @@ from core.intent.harpie import Harpie
 class PauseToken:
     def __init__(self):
         self.pause_state = False
-        self.kill = False
 
     def is_paused(self):
         return self.pause_state
@@ -36,9 +32,6 @@ class PauseToken:
         print("unpaused")
         self.pause_state = False
 
-    def kill(self):
-        self.kill = True
-
     def __str__(self):
         return str(self.pause_state)
 
@@ -47,7 +40,7 @@ def cycle_faces(token, screen):
     sleep_face = Image.open("assets/face/sleep-face.png")
     default_face = Image.open("assets/face/face.png")
 
-    while not token.kill:
+    while True:
         if token.is_paused():
             continue
         else:
@@ -79,20 +72,7 @@ class Hexi:
         face_cycle_thread = Thread(target=cycle_faces, args=(self.token, self.screen,))
         face_cycle_thread.start()
 
-        self.process_handler = None
-        self.skill_mp = None
-
         subprocess.call(["boot/audio.sh"])
-
-        atexit.register(self._exit)
-
-
-    def _exit(self):
-        if self.skill_mp and self.skill_mp.is_alive():
-            self.skill_mp.terminate()
-            self.skill_mp.join()
-
-        self.token.kill()
     
 
     def _show_face(self, y=0):
@@ -108,10 +88,7 @@ class Hexi:
     def listening_callback(self):
         print("keyword detected!")
 
-        if self.process_handler:
-            self.process_handler.suspend() # pause skill process
-
-        self.token.pause()  # pause face cycle thread
+        self.token.pause()
 
         self._show_face(y=-5)
         sound.play_wav("assets/audio/beep.wav")
@@ -122,37 +99,15 @@ class Hexi:
 
 
     def process_command(self, command):
-        if command == "stop":
-            print("[stop command] - stopping background skill")
-            if self.skill_mp and self.skill_mp.is_alive():
-                self.skill_mp.terminate()
-            self.skill_mp = None
-            self.process_handler = None
-            self._show_face()
-            return 0
-
-
         intent = self.harpie.get_intent(command)
 
         if len(intent) > 1:
             print("intent not found")
             self.token.unpause()
-
-            if self.process_handler:
-                self.process_handler.resume()
-
-            self._show_face()
         else:
-            if self.skill_mp and self.skill_mp.is_alive():
-                print("terminating background skill")
-                self.skill_mp.terminate()
-                print("background skill terminated!")
-
-            self.skill_mp = mp.Process(target=self.start_skill, args=(intent, command))
-            self.skill_mp.start()
-            self.process_handler = psutil.Process(self.skill_mp.pid)
-#            self.start_skill(intent, command)
-
+            self.start_skill(intent, command)
+        
+        self._show_face()
 
 
     def start_skill(self, intent, command):
@@ -171,8 +126,6 @@ class Hexi:
         sys.path.append(cur_dir)
         os.chdir(cur_dir)
         self.token.unpause()
-
-        self._show_face()
     
 
 
