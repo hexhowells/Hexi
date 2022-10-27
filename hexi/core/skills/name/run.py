@@ -13,7 +13,7 @@ def start(command=None):
     t = threading.Thread(target=sound.play_wav, args=["name.wav"])
     t.start()
 
-    face = Image.open("/home/pi/Hexi/hexi/assets/face/emotion1.png")
+    face = Image.open("/home/pi/Hexi/hexi/assets/face/happy-face.png")
     screen.show_image(face)
     time.sleep(2)
 

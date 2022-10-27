@@ -10,7 +10,7 @@ def start(command=None):
     motor = Motor()
     screen = display.Display()
 
-    face_image = Image.open("../../../assets/face/emotion1.png")
+    face_image = Image.open("../../../assets/face/happy-face.png")
     screen.show_image(face_image)
 
     motor.drive(Motor.LEFT, 0.05)
