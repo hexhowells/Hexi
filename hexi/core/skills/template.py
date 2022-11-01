@@ -1,5 +1,6 @@
 # import interfaces here
 import time
+import sys
 
 
 # entry point of skill
@@ -8,4 +9,6 @@ def start(command=None):
 
 
 if __name__ == "__main__":
-    start()
+    command = sys.argv[1:]
+    if len(command) == 0: command = None
+    start(command)
