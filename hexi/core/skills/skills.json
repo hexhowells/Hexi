@@ -35,6 +35,13 @@
         ],
         "script": "brightness/"
     },
+    "christmas": {
+        "commands": [
+            "merry christmas",
+            "its christmas"
+        ],
+        "script": "christmas/"
+    },
     "coin": {
         "commands": [
             "flip a coin"
