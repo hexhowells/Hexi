@@ -7,9 +7,10 @@ import time
 # entry point of skill
 def start(command=None):
     screen = display.Display()
-    coins = ["heads", "tails"]
+    coins = ["HEADS", "TAILS"]
     idx = random.randint(0, 1)
-    screen.draw_text(coins[idx])
+    x_pos = 15 if idx == 0 else 20
+    screen.draw_text_custom(coins[idx], x_pos, 20, 28)
     time.sleep(5)
 
 
