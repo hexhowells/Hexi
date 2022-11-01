@@ -182,5 +182,13 @@
             "do a spin"
         ],
         "script": "twirl/"
+    },
+    "volume": {
+        "commands": [
+            "set the volume to percent",
+            "set the volume to high",
+            "set the volume to low"
+        ],
+        "script": "volume/"
     }
 }
