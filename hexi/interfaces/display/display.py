@@ -9,13 +9,13 @@ assets_folder = "/home/pi/Hexi/hexi/assets/"
 
 
 class Display:
-    def __init__(self, port=1, address=0x3C):
+    def __init__(self, port=1, address=0x3C, font="fontawesome.ttf"):
         self.device = sh1106(i2c(port=port, address=address))
         self.height = self.device.height
         self.width = self.device.width
         self.virtual = viewport(self.device, width=self.width, height=self.height)
         self.mode = self.device.mode
-        self.font = ImageFont.truetype(assets_folder+"fonts/fontawesome.ttf", 54)
+        self.font = ImageFont.truetype(assets_folder+"fonts/"+font, 54)
 
         self.background = Image.new(self.mode, self.device.size)
     
