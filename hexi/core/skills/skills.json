@@ -24,6 +24,17 @@
         ],
         "script": "birthday/"
     },
+    "brightness": {
+        "commands": [
+            "set the brightness to high",
+            "set the brightness to low",
+            "set the contrast to high",
+            "set the contrast to low",
+            "set the screen to high",
+            "set the screen to low"
+        ],
+        "script": "brightness/"
+    },
     "coin": {
         "commands": [
             "flip a coin"
