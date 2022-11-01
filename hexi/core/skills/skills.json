@@ -140,6 +140,15 @@
         ],
         "script": "right/"
     },
+    "roam": {
+        "commands": [
+            "roam",
+            "roam around",
+            "explore",
+            "go and explore"
+        ],
+        "script": "roam/"
+    },
     "takePicture": {
         "commands": [
             "take a picture of me",
