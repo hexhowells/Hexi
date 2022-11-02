@@ -208,5 +208,14 @@
             "set the volume to low"
         ],
         "script": "volume/"
+    },
+    "weather": {
+        "commands": [
+            "whats the weather today",
+            "whats the weather",
+            "tell me the weather",
+            "give me the weather"
+        ],
+        "script": "weather/"
     }
 }
