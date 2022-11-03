@@ -13,6 +13,7 @@ from speech.wakeword import KeywordDetection
 from interfaces.speaker import sound
 from hexi.interfaces.display import display
 from hexi import config
+from telegram import listener
 
 from core.intent.harpie import Harpie
 
@@ -48,7 +49,7 @@ def cycle_faces(token, screen):
 
             time.sleep(random_time)
             if not token.is_paused():
-                screen.show_image(sleep_face)
+                screen.show_image(sleep_face, y=10)
 
             time.sleep(random_time)
             if not token.is_paused():
@@ -71,6 +72,9 @@ class Hexi:
         self.token = PauseToken()
         face_cycle_thread = Thread(target=cycle_faces, args=(self.token, self.screen,))
         face_cycle_thread.start()
+
+        telebot_thread = Thread(target=listener.start_bot, args=(self.token, ))
+        telebot_thread.start()
 
         subprocess.call(["boot/audio.sh"])
     
