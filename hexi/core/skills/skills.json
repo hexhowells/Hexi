@@ -129,6 +129,8 @@
             "open my message",
             "open my texts",
             "show me the message",
+	    "read my message",
+	    "read my messages",
 	    "master's",
 	    "master"
         ],
