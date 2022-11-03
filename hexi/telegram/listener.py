@@ -33,7 +33,7 @@ def ping(message):
 
 
 @bot.message_handler(commands=['debug'])
-def ping(message):
+def debug(message):
     bot.debug_on = not bot.debug_on
     if bot.debug_on:
         if not bot.pause_token.is_paused():
