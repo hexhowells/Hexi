@@ -94,7 +94,7 @@ class Display:
 
 class Terminal:
     def __init__(self, display):
-        font = ImageFont.truetype("../../assets/fonts/ProggyTiny.ttf", 16)
+        font = ImageFont.truetype("/home/pi/Hexi/hexi/assets/fonts/ProggyTiny.ttf", 16)
         self.terminal = terminal(display.device, font)
 
 
