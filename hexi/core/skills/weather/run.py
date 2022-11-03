@@ -4,6 +4,7 @@ import sys
 import requests
 from luma.core.render import canvas
 from PIL import ImageFont
+import geocoder
 
 from hexi.interfaces.display import display, icons
 
@@ -28,6 +29,7 @@ def get_weather(url):
     data = ret.json()
 
     weather_code = data['daily']['weathercode'][0]
+    print(f"{weather_code=}")
     temp_max = data['daily']['temperature_2m_max'][0]
     temp_min = data['daily']['temperature_2m_min'][0]
     avg_temp = int((temp_min + temp_max) / 2)
@@ -46,8 +48,10 @@ def get_weather_icon(code_to_icon, code):
 
 # entry point of skill
 def start(command=None):
-    lon="-3.0174"
-    lat="51.8209"
+    geo_data = geocoder.ip('me')
+    lat, lon = geo_data.latlng
+    #lon="-3.0174"
+    #lat="51.8209"
     url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Europe%2FLondon"
 
     weather_code_map = {
