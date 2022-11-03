@@ -17,8 +17,10 @@ bot = HexiTeleBot(auth.keys["telegram"])
 all_commands = ['help', 'debug', 'ping']
 
 
+
 @bot.message_handler(commands=['help'])
 def help(message):
+    if message.chat.id not in auth.id_whitelist: return
     msg = "--- COMMANDS ---\n"
     msg += '\n'.join(all_commands)
     bot.send_message(message.chat.id, msg)
@@ -26,6 +28,7 @@ def help(message):
 
 @bot.message_handler(commands=['ping'])
 def ping(message):
+    if message.chat.id not in auth.id_whitelist: return
     now_raw = datetime.now()
     now = now_raw.strftime("%d/%m/%Y %H:%M:%S")
     msg = f'ping recieved at {now}'
@@ -34,6 +37,8 @@ def ping(message):
 
 @bot.message_handler(commands=['debug'])
 def debug(message):
+    if message.chat.id not in auth.id_whitelist: return
+
     bot.debug_on = not bot.debug_on
     if bot.debug_on:
         if not bot.pause_token.is_paused():
@@ -47,6 +52,7 @@ def debug(message):
 
 @bot.message_handler(func=lambda message: True)
 def recieve_message(message):
+    if message.chat.id not in auth.id_whitelist: return
     bot.pause_token.pause()
     bot.screen.show_icon(icons.Envelope)
     print(message.text)
