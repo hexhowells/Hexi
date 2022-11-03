@@ -122,6 +122,18 @@
         ],
         "script": "love/"
     },
+    "message": {
+        "commands": [
+            "show me my messages",
+            "show me my texts",
+            "open my message",
+            "open my texts",
+            "show me the message",
+	    "master's",
+	    "master"
+        ],
+        "script": "message/"
+    },
     "morse": {
         "commands": [
             "speak morse code",
