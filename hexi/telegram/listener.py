@@ -9,7 +9,7 @@ from hexi.config import config
 from hexi.interfaces.display import display, icons
 from hexi.interfaces.speaker import sound
 from hexi.interfaces.motor import Motor
-from hexi.interfaces.camera import camera
+from hexi.interfaces.camera import camera as cam_interface
 
 
 class HexiTeleBot(telebot.TeleBot):
@@ -21,7 +21,7 @@ class HexiTeleBot(telebot.TeleBot):
 
 
 bot = HexiTeleBot(auth.keys["telegram"])
-all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces']
+all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces', 'camera']
 
 
 
@@ -102,6 +102,22 @@ def faces(message):
 
         screen.clear()
 
+
+@bot.message_handler(commands=['camera'])
+def camera(message):
+    if message.chat.id not in auth.id_whitelist: return
+    if not bot.debug_on:
+        bot.send_message(message.chat.id, "debug mode is not active")
+    else:
+        bot.send_message(message.chat.id, "captuing image")
+        cam = cam_interface.Camera()
+        photo_array = cam.capture(delay=1)
+        photo_array = photo_array[:,:,::-1]  # convert BGR to RGB
+        photo = Image.fromarray(photo_array)   
+
+        bot.send_photo(message.chat.id, photo)
+
+        cam.close()
 
 
 @bot.message_handler(func=lambda message: True)
