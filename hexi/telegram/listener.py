@@ -1,8 +1,12 @@
 import telebot
+from datetime import datetime
+
 from hexi.auth import auth
 from hexi.config import config
 from hexi.interfaces.display import display, icons
-from datetime import datetime
+from hexi.interfaces.speaker import sound
+from hexi.interfaces.motor import Motor
+from hexi.interfaces.camera import camera
 
 
 class HexiTeleBot(telebot.TeleBot):
@@ -48,6 +52,17 @@ def debug(message):
         bot.pause_token.unpause()
 
     bot.send_message(message.chat.id, f"debug set to {bot.debug_on}")
+
+
+@bot.message_handler(commands=['motor'])
+def motor(message):
+    if message.chat.id not in auth.id_whitelist: return
+    if not bot.debug_on:
+        bot.send_message(message.chat.id, "debug mode is not active")
+    else:
+        bot.send_message(message.chat.id, "driving motors forward for 1 second")
+        motor = Motor()
+        motor.drive(Motor.FORWARD, 1)
 
 
 @bot.message_handler(func=lambda message: True)
