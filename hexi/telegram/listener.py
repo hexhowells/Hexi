@@ -74,9 +74,11 @@ def screen(message):
     if not bot.debug_on:
         bot.send_message(message.chat.id, "debug mode is not active")
     else:
+        bot.send_message(message.chat.id, "testing all screen pixels")
         screen = display.Display()
         screen.draw_rectangle(0, 0, 64, 128)
         time.sleep(5)
+        screen.clear()
 
 
 @bot.message_handler(commands=['faces'])
