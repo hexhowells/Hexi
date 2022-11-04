@@ -1,5 +1,6 @@
 import telebot
 from datetime import datetime
+import time
 
 from hexi.auth import auth
 from hexi.config import config
@@ -63,6 +64,17 @@ def motor(message):
         bot.send_message(message.chat.id, "driving motors forward for 1 second")
         motor = Motor()
         motor.drive(Motor.FORWARD, 1)
+
+
+@bot.message_handler(commands=['screen'])
+def screen(message):
+    if message.chat.id not in auth.id_whitelist: return
+    if not bot.debug_on:
+        bot.send_message(message.chat.id, "debug mode is not active")
+    else:
+        screen = display.Display()
+        screen.draw_rectangle(0, 0, 64, 128)
+        time.sleep(5)
 
 
 @bot.message_handler(func=lambda message: True)
