@@ -21,7 +21,7 @@ class HexiTeleBot(telebot.TeleBot):
 
 
 bot = HexiTeleBot(auth.keys["telegram"])
-all_commands = ['help', 'debug', 'ping']
+all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces']
 
 
 
