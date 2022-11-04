@@ -11,7 +11,7 @@ from speech.speech import STT
 from speech.wakeword import KeywordDetection
 
 from interfaces.speaker import sound
-from hexi.interfaces.display import display
+from hexi.interfaces.display import display, icons
 from hexi import config
 from telegram import listener
 
@@ -40,16 +40,25 @@ class PauseToken:
 def cycle_faces(token, screen):
     sleep_face = Image.open("assets/face/sleep-face.png")
     default_face = Image.open("assets/face/face.png")
+    happy_face = Image.open("assets/face/happy-face.png")
 
     while True:
         if token.is_paused():
             continue
         else:
             random_time = random.randint(10, 120)
+            gamma = random.uniform(0, 1)
 
             time.sleep(random_time)
             if not token.is_paused():
-                screen.show_image(sleep_face, y=10)
+                if gamma < 0.8:
+                    screen.show_image(sleep_face, y=10)
+                elif gamma < 0.90:
+                    screen.show_image(happy_face)
+                    random_time = 8
+                else:
+                    screen.show_icon(icons.Heart)
+                    random_time = 8
 
             time.sleep(random_time)
             if not token.is_paused():
