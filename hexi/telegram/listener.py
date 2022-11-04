@@ -1,6 +1,8 @@
 import telebot
 from datetime import datetime
 import time
+import os
+from PIL import Image
 
 from hexi.auth import auth
 from hexi.config import config
@@ -75,6 +77,29 @@ def screen(message):
         screen = display.Display()
         screen.draw_rectangle(0, 0, 64, 128)
         time.sleep(5)
+
+
+@bot.message_handler(commands=['faces'])
+def faces(message):
+    if message.chat.id not in auth.id_whitelist: return
+    if not bot.debug_on:
+        bot.send_message(message.chat.id, "debug mode is not active")
+    else:
+        bot.send_message(message.chat.id, "testing all faces for Hexi")
+        screen = display.Display()
+        
+        assets_path = "/home/pi/Hexi/hexi/assets/face/"
+        for file_name in os.listdir(assets_path):
+            filetype = file_name.split('.')[-1]
+            if filetype != 'png': continue
+            
+            filepath = assets_path + file_name
+            face_image = Image.open(filepath)
+            screen.show_image(face_image)
+            time.sleep(4)
+
+        screen.clear()
+
 
 
 @bot.message_handler(func=lambda message: True)
