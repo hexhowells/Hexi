@@ -21,7 +21,7 @@ class HexiTeleBot(telebot.TeleBot):
 
 
 bot = HexiTeleBot(auth.keys["telegram"])
-all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces', 'camera']
+all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces', 'camera', "speaker"]
 
 
 
@@ -119,6 +119,15 @@ def camera(message):
 
         cam.close()
 
+
+@bot.message_handler(commands=['speaker'])
+def speaker(message):
+    if message.chat.id not in auth.id_whitelist: return
+    if not bot.debug_on:
+        bot.send_message(message.chat.id, "debug mode is not active")
+    else:
+        bot.send_message(message.chat.id, "playing a tone through the speakers")
+        sound.play_wav("/home/pi/Hexi/hexi/assets/audio/sine.wav")
 
 @bot.message_handler(func=lambda message: True)
 def recieve_message(message):
