@@ -156,12 +156,6 @@
         ],
         "script": "name/"
     },
-    "redlightgreenlight": {
-        "commands": [
-            "play red light green light"
-        ],
-        "script": "redlightgreenlight/"
-    },
     "right": {
         "commands": [
             "move right",
