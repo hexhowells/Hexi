@@ -10,8 +10,9 @@ from threading import Thread
 from speech.speech import STT
 from speech.wakeword import KeywordDetection
 
-from interfaces.speaker import sound
+from hexi.interfaces.speaker import sound
 from hexi.interfaces.display import display, icons
+from hexi.interfaces.battery import Battery
 from hexi import config
 from telegram import listener
 
@@ -65,6 +66,17 @@ def cycle_faces(token, screen):
                 screen.show_image(default_face)
 
 
+def monitor_battery(token, screen, voltage_lim=3.35):
+    battery = Battery()
+    while True:
+        time.sleep(10)
+        voltage = battery.voltage()
+        print(voltage, voltage_lim)
+        if voltage < voltage_lim:
+            token.pause()
+            screen.show_icon(icons.BatteryLow)
+
+
 class Hexi:
     def __init__(self):
         self.screen = display.Display()
@@ -84,6 +96,9 @@ class Hexi:
 
         telebot_thread = Thread(target=listener.start_bot, args=(self.token, ))
         telebot_thread.start()
+
+        battery_thread = Thread(target=monitor_battery, args=(self.token, self.screen))
+        battery_thread.start()
 
         subprocess.call(["boot/audio.sh"])
     
