@@ -19,10 +19,12 @@ class Battery:
 
     def voltage(self):
         time.sleep(0.5)
-        voltage = self.ads.get_compensated_voltage(
-                        channel=self.channel, 
-                        reference_voltage=self.reference
-                        )
+
+        avg_voltage = 0
+        for i in range(10):
+            avg_voltage += self.ads.get_compensated_voltage(self.channel, self.reference)
+
+        voltage = avg_voltage / 10
 
         return voltage
 
