@@ -66,7 +66,7 @@ def cycle_faces(token, screen):
                 screen.show_image(default_face)
 
 
-def monitor_battery(token, screen, voltage_lim=3.35):
+def monitor_battery(token, screen, voltage_lim=3.335):
     battery = Battery()
     while True:
         time.sleep(10)
