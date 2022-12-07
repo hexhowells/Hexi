@@ -71,7 +71,7 @@ def monitor_battery(token, screen, voltage_lim=3.335):
     while True:
         time.sleep(10)
         voltage = battery.voltage()
-        print(voltage, voltage_lim)
+
         if voltage < voltage_lim:
             token.pause()
             screen.show_icon(icons.BatteryLow)
