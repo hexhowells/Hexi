@@ -19,14 +19,18 @@ class Battery:
 
     def voltage(self):
         time.sleep(0.5)
-
+        samples = 5 
         avg_voltage = 0
-        for i in range(10):
-            avg_voltage += self.ads.get_compensated_voltage(self.channel, self.reference)
 
-        voltage = avg_voltage / 10
+        for i in range(samples):
+            avg_voltage += self.ads.get_compensated_voltage(
+                                    channel=self.channel, 
+                                    reference_voltage=self.reference
+                                    )
 
-        return voltage
+        voltage = avg_voltage / samples
+
+        return round(voltage, 3)
 
 
     def percentage(self, min_v=3.3, max_v=3.7):
