@@ -9,6 +9,7 @@ from hexi.config import config
 from hexi.interfaces.display import display, icons
 from hexi.interfaces.speaker import sound
 from hexi.interfaces.motor import Motor
+from hexi.interfaces.battery import Battery
 from hexi.interfaces.camera import camera as cam_interface
 
 
@@ -21,7 +22,7 @@ class HexiTeleBot(telebot.TeleBot):
 
 
 bot = HexiTeleBot(auth.keys["telegram"])
-all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces', 'camera', "speaker"]
+all_commands = ['help', 'debug', 'ping', 'motor', 'screen', 'faces', 'camera', "speaker", "battery"]
 
 
 
@@ -109,7 +110,7 @@ def camera(message):
     if not bot.debug_on:
         bot.send_message(message.chat.id, "debug mode is not active")
     else:
-        bot.send_message(message.chat.id, "captuing image")
+        bot.send_message(message.chat.id, "capturing image")
         cam = cam_interface.Camera()
         photo_array = cam.capture(delay=1)
         photo_array = photo_array[:,:,::-1]  # convert BGR to RGB
@@ -128,6 +129,22 @@ def speaker(message):
     else:
         bot.send_message(message.chat.id, "playing a tone through the speakers")
         sound.play_wav("/home/pi/Hexi/hexi/assets/audio/sine.wav")
+
+
+@bot.message_handler(commands=['battery'])
+def battery(message):
+    if message.chat.id not in auth.id_whitelist: return
+    if not bot.debug_on:
+        bot.send_message(message.chat.id, "debug mode is not active")
+    else:
+        battery = Battery()
+        voltage = battery.voltage()
+        percentage = battery.percentage()
+        message1 = f'battery voltage is {voltage}v'
+        message2 = f'battery percentage is {percentage}%'
+        bot.send_message(message.chat.id, message1)
+        bot.send_message(message.chat.id, message2)
+        
 
 @bot.message_handler(func=lambda message: True)
 def recieve_message(message):
