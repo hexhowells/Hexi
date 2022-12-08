@@ -33,7 +33,7 @@ class Battery:
         return round(voltage, 3)
 
 
-    def percentage(self, min_v=3.3, max_v=3.7):
+    def percentage(self, min_v=3.3, max_v=4.2):
         voltage = self.voltage()
         normalised_v = max(0, voltage - min_v)
         normalised_max_v = max_v - min_v
