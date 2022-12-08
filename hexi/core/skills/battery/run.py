@@ -9,6 +9,7 @@ from hexi.interfaces.display import display, icons
 def start(command=None):
     screen = display.Display()
     battery = Battery()
+    print(battery.voltage())
     level = battery.percentage()
     battery_info = str(level) + "%"
 
