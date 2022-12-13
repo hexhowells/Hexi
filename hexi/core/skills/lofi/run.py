@@ -3,6 +3,9 @@ from hexi.interfaces.speaker import sound
 #import rain
 import starfield
 import vlc
+import time
+import multiprocessing as mp
+from hexi.interfaces.button import Button
 
 
 # entry point of skill
@@ -13,7 +16,17 @@ def start(command=None):
     stream.play()
     
     #rain.start_animation()
-    starfield.start_animation()
+    proc = mp.Process(target=starfield.start_animation)
+    proc.start()
+
+    btn = Button()
+    while not btn.pushed():
+        time.sleep(0.1)
+    
+    stream.stop()
+    proc.kill()
+
+    return 0
 
 
 if __name__ == "__main__":
