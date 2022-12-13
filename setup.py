@@ -10,6 +10,7 @@ setup(
             'hexi/interfaces/speaker', 
             'hexi/interfaces/display', 
             'hexi/interfaces/battery',
+            'hexi/interfaces/button',
             'hexi/speech', 
             'hexi/telegram', 
             'hexi/auth/', 
