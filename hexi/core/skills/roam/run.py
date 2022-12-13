@@ -1,6 +1,7 @@
 from hexi.interfaces.camera import camera
 from hexi.interfaces.motor import Motor
 from hexi.interfaces.display import display
+from hexi.interfaces.button import Button
 
 from curiosity import NewObject
 from drive import Drive
@@ -47,9 +48,14 @@ def start(command=None):
     # move motors to indicate roaming mode has started
     motor.drive(Motor.FORWARD, 0.1)
     motor.drive(Motor.BACKWARD, 0.1)
+
+    btn = Button()
     
 
     for i, frame in enumerate(cam.stream()):
+        if btn.pushed():
+            break
+
         if (i % 30) != 0:
             continue
 
