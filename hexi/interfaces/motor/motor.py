@@ -8,10 +8,10 @@ class Motor:
     RIGHT = [True, False, True, False]
     LEFT = [False, True, False, True]
 
-    def __init__(self, pins=[27, 22, 23, 24]):
+    def __init__(self, pins=[13, 15, 16, 18]):
         self.pins = pins
 
-        gpio.setmode(gpio.BCM)
+        gpio.setmode(gpio.BOARD)
         gpio.setup(self.pins[0], gpio.OUT)
         gpio.setup(self.pins[1], gpio.OUT)
         gpio.setup(self.pins[2], gpio.OUT)
