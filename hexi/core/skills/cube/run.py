@@ -3,6 +3,7 @@ import time
 from hexi.features.fiducial import find_marker
 from hexi.interfaces.camera import camera
 from hexi.interfaces.motor import Motor
+from hexi.interfaces.button import Button
 
 
 def start(command=None):
@@ -10,8 +11,12 @@ def start(command=None):
     motor = Motor()
     center_x = 320
     tolerance = 50
+    btn = Button()
 
     for i, frame in enumerate(cam.stream()):
+        if btn.pushed():
+            break
+
         if (i % 5) != 0:
             continue
 
