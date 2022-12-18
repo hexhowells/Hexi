@@ -41,7 +41,4 @@ class Button:
         return gpio.input(self.pin) == gpio.LOW
 
 
-    def __del__(self):
-        gpio.cleanup()
-
 
