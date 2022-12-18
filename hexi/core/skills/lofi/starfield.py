@@ -1,5 +1,6 @@
 from random import randrange
 from hexi.interfaces.display import display
+from hexi.interfaces.button import Button
 
 
 def init_stars(num_stars, max_depth):
@@ -44,8 +45,9 @@ def start_animation():
     max_depth = 32
     stars = init_stars(512, max_depth)
     screen = display.Display()
+    button = Button()
     
-    while True:
+    while not button.pushed():
         move_and_draw_stars(screen, stars, max_depth)
 
 

@@ -11,21 +11,16 @@ from hexi.interfaces.speaker import sound
 def start(command=None):
     audio_url = "http://lofi.stream.laut.fm/lofi?t302=2022-10-16_19-42-25&uuid=1be943bb-c5bf-486b-adb1-2c19e96c01dd"
    
-    #sound.set_volume(80)
+    curr_volume = sound.get_volume()
+    if curr_volume > 70:
+        sound.set_volume(70)
 
     stream = vlc.MediaPlayer(audio_url)
     stream.play()
     
-    #rain.start_animation()
-    proc = mp.Process(target=starfield.start_animation)
-    proc.start()
-
-    btn = Button()
-    while not btn.pushed():
-        time.sleep(0.1)
+    starfield.start_animation()
     
     stream.stop()
-    proc.kill()
 
     return 0
 
