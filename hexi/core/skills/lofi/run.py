@@ -12,8 +12,8 @@ def start(command=None):
     audio_url = "http://lofi.stream.laut.fm/lofi?t302=2022-10-16_19-42-25&uuid=1be943bb-c5bf-486b-adb1-2c19e96c01dd"
    
     curr_volume = sound.get_volume()
-    if curr_volume > 70:
-        sound.set_volume(70)
+    if curr_volume > 50:
+        sound.set_volume(50)
 
     stream = vlc.MediaPlayer(audio_url)
     stream.play()
