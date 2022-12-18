@@ -161,5 +161,5 @@ def recieve_message(message):
 
 def start_bot(pause_token):
     bot.pause_token = pause_token
-    bot.infinity_polling()
+    bot.infinity_polling(timeout=80, long_polling_timeout=120)
 
