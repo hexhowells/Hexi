@@ -25,6 +25,8 @@ def start(command=None):
     stream.stop()
     proc.kill()
 
+    return 0
+
     
 
 if __name__ == "__main__":
