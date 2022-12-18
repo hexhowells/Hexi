@@ -1,5 +1,6 @@
 import random
 from hexi.interfaces.display import display
+from hexi.interfaces.button import Button
 
 rain_width = 1
 
@@ -56,8 +57,9 @@ def render_drops(screen, raindrops):
 def start_animation():
     screen = display.Display()
     raindrops = get_first_rain()
+    button = Button()
 
-    while True:
+    while not button.pushed():
         render_drops(screen, raindrops)
         raindrops = progress_rain(raindrops)
 

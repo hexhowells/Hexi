@@ -4,7 +4,6 @@ import rain
 import starfield
 import vlc
 import time
-import multiprocessing as mp
 from hexi.interfaces.button import Button
 
 
@@ -15,15 +14,9 @@ def start(command=None):
     stream = vlc.MediaPlayer(audio_url)
     stream.play()
     
-    proc = mp.Process(target=rain.start_animation)
-    proc.start()
-
-    btn = Button()
-    while not btn.pushed():
-        time.sleep(0.1)
+    rain.start_animation()
 
     stream.stop()
-    proc.kill()
 
     return 0
 
