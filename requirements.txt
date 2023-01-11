@@ -1,0 +1,12 @@
+hexi
+pvrecorder
+pvporcupine
+pvcheetah
+simpleaudio
+pyalsaaaudio
+playsound
+ads1015
+telebot
+opencv-python
+numpy
+nltk
