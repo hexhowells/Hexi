@@ -4,7 +4,6 @@
             "play ambient sounds",
             "play relaxing sounds",
             "play nice sounds",
-            "play rain sounds",
             "play thunder sounds"
         ],
         "script": "ambient/"
