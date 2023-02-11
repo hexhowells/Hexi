@@ -127,6 +127,7 @@ class Hexi:
 
 
     def process_command(self, command):
+        command = command.replace("'", "")  # normalise command
         intent = self.harpie.get_intent(command)
 
         if len(intent) > 1:
