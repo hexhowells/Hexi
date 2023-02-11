@@ -5,7 +5,6 @@
             "play relaxing sounds",
             "play nice sounds",
             "play rain sounds",
-            "play fire sounds",
             "play thunder sounds"
         ],
         "script": "ambient/"
@@ -23,7 +22,6 @@
             "whats your battery percentage",
             "how much battery do you have left",
             "whats your battery",
-            "whats your battery at",
             "how much power do you have left"
         ],
         "script": "battery/"
@@ -165,7 +163,6 @@
             "move right",
             "rotate right",
             "rotate clockwise",
-            "move clockwise",
             "turn right"
         ],
         "script": "right/"
@@ -200,7 +197,6 @@
             "turn on the torch",
             "turn on the flashlight",
             "its too dark",
-            "give me light",
             "im afraid of the dark"
         ],
         "script": "torch/"
@@ -208,7 +204,8 @@
     "twirl": {
         "commands": [
             "do a twirl",
-            "do a spin"
+            "do a spin",
+	    "spin around"
         ],
         "script": "twirl/"
     },
@@ -224,9 +221,7 @@
         "commands": [
             "whats the weather today",
             "whats the weather",
-	    "what's the weather",
-            "tell me the weather",
-            "give me the weather"
+            "tell me the weather"
         ],
         "script": "weather/"
     }
