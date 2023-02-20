@@ -69,7 +69,8 @@
     "dance": {
         "commands": [
             "dance",
-            "lets dance"
+            "lets dance",
+	    "happy dance"
         ],
         "script": "dance/"
     },
@@ -92,7 +93,7 @@
         "commands": [
             "good job",
             "you look cute",
-            "happy dance"
+            "well done"
         ],
         "script": "happy/"
     },
