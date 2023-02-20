@@ -2,9 +2,12 @@ import subprocess
 import time
 from hexi.interfaces.button import Button
 from threading import Thread
+from hexi.interfaces.display import display
 
 
 def stop_core(proc):
+    screen = display.Display()
+    screen.draw_text("Restarting...")
     print("killing core from watcher")
     proc.kill()
 
