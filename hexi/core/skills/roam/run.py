@@ -39,9 +39,9 @@ def start(command=None):
     obj = NewObject()
 
     drive_gamma = 0.4
-    cube_gamma = 0.5
+    cube_gamma = 0.9
     angry_gamma = 0.2
-    obj_gamma = 0.8
+    obj_gamma = 0.9
 
     prev_moved = False
 
@@ -105,6 +105,10 @@ def start(command=None):
 
         prev_moved = False
         print("\t NOTHING")
+
+    cam.close()
+    print("cam closed, returning")
+    return 0
 
 
 
