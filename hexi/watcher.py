@@ -16,8 +16,8 @@ def start():
     button = Button()
 
     proc = subprocess.Popen(["python3", "start.py"])
-    t1 = Thread(target=button.detect_hold, args=(stop_core, (proc, )))
-    t1.start()
+    #t1 = Thread(target=button.detect_hold, args=(stop_core, (proc, )))
+    #t1.start()
     out, err = proc.communicate()
 
     print(f'[ERROR] - {err}')
