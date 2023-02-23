@@ -32,6 +32,7 @@ class Button:
                     hold_ticks = 0
 
                 if hold_ticks > (4 * seconds):
+                    print("button hold detected! executing callback.")
                     callback(*args)
                     hold_ticks = 0
                  
