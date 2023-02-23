@@ -67,7 +67,7 @@ def start(command=None):
                 motor.drive(Motor.FORWARD, 0.3)
         else:
             # search for cube
-            motor.drive(Motor.RIGHT, 0.05)
+            motor.drive(Motor.LEFT, 0.05)
 
 
 
