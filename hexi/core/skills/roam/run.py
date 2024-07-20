@@ -39,9 +39,9 @@ def start(command=None):
     obj = NewObject()
 
     drive_gamma = 0.4
-    cube_gamma = 0.5
+    cube_gamma = 0.9
     angry_gamma = 0.2
-    obj_gamma = 0.8
+    obj_gamma = 0.9
 
     prev_moved = False
 
@@ -65,11 +65,6 @@ def start(command=None):
         new_object = obj.detect(image)
         cube_found, cube_action, cube_action_len = cube.find(image)
         
-        #print("\n\nNEW FRAME")
-        #print(f'{drive_action=} {drive_action_len=}')
-        #print(f'{new_object=}')
-        #print(f'{cube_found=} {cube_action=}')
-
         if cube_found and (random.uniform(0, 1) < cube_gamma):
             print("\t CUBE FOUND")
             if cube_action:
@@ -105,6 +100,13 @@ def start(command=None):
 
         prev_moved = False
         print("\t NOTHING")
+
+    cam.close()
+
+    motor.drive(motor.BACKWARD, 0.1)
+    motor.drive(motor.FORWARD, 0.1)
+
+    return 0
 
 
 
